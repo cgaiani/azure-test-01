@@ -28,6 +28,11 @@ steps:
     scannerMode: 'Other'
     extraProperties: 'sonar.projectKey=sonarqube-teams-integration'
 
+# Run Code Analysis v5
+# Run scanner and upload the results to the SonarQube server.
+- task: SonarQubeAnalyze@5
+  inputs: # none
+
 # Publish Quality Gate Result task
 - task: SonarQubePublish@5
   inputs:
