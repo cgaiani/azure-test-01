@@ -25,15 +25,19 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'VF SonarQube'
-    scannerMode: 'Other'
-    extraProperties: 'sonar.projectKey=sonarqube-teams-integration'
+    scannerMode: CLI
+    configMode: manual
+    cliProjectKey: 'repo_test_01'
+    cliProjectName: 'repo_test_01'
+    cliSources: ../
+    extraProperties: |
+     # Additional properties that will be passed to the scanner, 
+     # Put one key=value per line, example:
+     sonar.java.binaries=./
+     sonar.exclusions=**/*.bin
 
 # Run Code Analysis v5
 # Run scanner and upload the results to the SonarQube server.
 - task: SonarQubeAnalyze@5
-  inputs: # none
+  displayName: 'Run Code Analysis'
 
-# Publish Quality Gate Result task
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
